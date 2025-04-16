@@ -1,0 +1,508 @@
+/* Main chat container styling */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+    background-color: #ECE4D9; /* Modern Minty - beige background */
+}
+
+.chat-main {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.chat-header {
+    padding: 16px 20px;
+    background-color: #B7BEA0; /* Modern Minty - sage green header */
+    color: #333333; /* Darker text for better readability */
+    border-bottom: 1px solid #e5e7eb;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header h1 {
+    margin: 0;
+    font-size: 26px; /* Larger font size */
+    font-weight: 600;
+    margin-bottom: 15px; /* Add space for buttons */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Add text shadow for readability */
+}
+
+.header-buttons {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px; /* Space between buttons */
+}
+
+.new-chat-btn, 
+.show-tutorial-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #ABB5B6; /* Modern Minty - gray-blue */
+    color: #333333;
+    transition: all 0.2s ease;
+}
+
+.new-chat-btn:hover, 
+.show-tutorial-btn:hover {
+    background-color: #E8D1C3; /* Modern Minty - peach on hover */
+}
+
+.disclaimer {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #4b5563;
+    padding: 12px 16px;
+    margin: 0;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Quick Exit Button */
+.quick-exit-btn {
+    background-color: #B18B7E; /* Modern Minty - mauve for exit button */
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 10px 18px;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.quick-exit-btn:hover {
+    background-color: #E8D1C3; /* Modern Minty - peach on hover */
+    color: #333333;
+    transform: translateY(-2px);
+}
+
+/* Message styling */
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: #ECE4D9; /* Modern Minty - beige background */
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+}
+
+.message {
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: #B7BEA0; /* Modern Minty - sage green */
+    color: #333333;
+    margin-right: auto;
+    border-bottom-left-radius: 6px;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #ABB5B6; /* Modern Minty - gray-blue */
+    color: #333333;
+    margin-left: auto;
+    border-bottom-right-radius: 6px;
+    font-weight: 500;
+}
+
+/* Clinic listings styling */
+.bot-message h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 14px 0;
+    color: #333333;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.clinic-listing {
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e8eef9;
+}
+
+.clinic-listing:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.clinic-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #324a7a;
+    margin: 0 0 6px 0;
+}
+
+.clinic-address {
+    font-size: 14px;
+    color: #4b5563;
+    margin: 0 0 6px 0;
+}
+
+.clinic-distance {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0 0 4px 0;
+}
+
+.clinic-hours {
+    font-size: 14px;
+    color: #324a7a;
+    margin: 0 0 10px 0;
+}
+
+/* Map container */
+.map-container {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    max-height: 400px;
+    height: 100%;
+    width: 100%;
+}
+
+.clinic-map {
+    height: 300px;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: #f0f4fa;
+    color: #6b7280;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+}
+
+.map-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.map-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #324a7a;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+/* System messages */
+.system-message {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    text-align: center;
+    align-self: center;
+    max-width: 90%;
+    margin: 8px auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.searching-clinics {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #4b5563;
+}
+
+/* Feedback section */
+.feedback-container {
+    padding: 10px 0;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.feedback-prompt {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: 24px; /* Increased from 10px to 24px for more spacing */
+}
+
+.feedback-button,
+.feedback-button * {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    background-color: transparent !important;
+}
+
+.feedback-button i {
+    color: #666;
+    font-size: 18px;
+}
+
+.feedback-button:hover i {
+    color: #333333;
+}
+
+.feedback-button.selected i {
+    color: #B7BEA0;
+}
+
+.feedback-textarea {
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px solid #E8D1C3; /* Modern Minty - peach */
+    border-radius: 8px;
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.feedback-button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.feedback-submit-btn,
+.feedback-skip-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #B7BEA0; /* Modern Minty - sage green */
+    color: #333333;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.feedback-submit-btn:hover,
+.feedback-skip-btn:hover {
+    background-color: #E8D1C3; /* Modern Minty - peach */
+}
+
+/* Chat form */
+.chat-form {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #ffffff;
+    border-top: 1px solid #e5e7eb;
+}
+
+#userInput {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #E8D1C3; /* Modern Minty - peach */
+    border-radius: 24px;
+    font-size: 15px;
+    resize: none;
+    height: 50px;
+    max-height: 120px;
+    overflow-y: auto;
+    background-color: #ECE4D9; /* Modern Minty - beige */
+    transition: all 0.2s ease;
+}
+
+#userInput:focus {
+    outline: none;
+    border-color: #B7BEA0; /* Modern Minty - sage green */
+    box-shadow: 0 0 0 2px rgba(183, 190, 160, 0.3); /* Modern Minty - sage green with opacity */
+}
+
+#sendButton {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #B7BEA0; /* Modern Minty - sage green */
+    color: #333333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+#sendButton:hover:not(:disabled) {
+    background-color: #E8D1C3; /* Modern Minty - peach */
+    transform: translateY(-2px);
+}
+
+#sendButton:disabled {
+    background-color: #d1d5db;
+    cursor: not-allowed;
+    color: #9ca3af;
+}
+
+/* Citations section */
+.citations-section {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+
+.citations-section h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #324a7a;
+    margin: 0 0 8px 0;
+}
+
+.citation-list {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.citation-item {
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.citation-link {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.citation-link:hover {
+    text-decoration: underline;
+}
+
+.citation-title {
+    font-weight: 500;
+}
+
+.citation-details {
+    color: #6b7280;
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+.citation-ref {
+    cursor: pointer;
+    color: #3b82f6;
+    font-weight: 500;
+}
+
+.citation-highlight {
+    background-color: #fef3c7;
+    transition: background-color 0.5s ease;
+}
+
+/* Style for citation references in text */
+sup.citation-ref {
+    padding: 0 2px;
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+    top: -0.5em;
+}
+
+sup.citation-ref a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+sup.citation-ref a:hover {
+    text-decoration: underline;
+}
+
+.typing-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 18px;
+    width: fit-content;
+    align-self: flex-start;
+    max-width: 70%;
+}
+
+.thinking-text {
+    font-size: 16px;
+    color: #666;
+    font-style: italic;
+    padding: 8px 16px;
+    min-width: 150px;
+    text-align: left;
+    font-family: inherit;
+} 

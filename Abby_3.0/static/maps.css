@@ -1,0 +1,239 @@
+/* Enhanced Google Maps Styling */
+
+/* Container for the map display */
+.map-container {
+    position: relative;
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    z-index: 10;
+    background-color: #f8f9fa;
+    display: none; /* Hidden by default, shown via JS */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Force display for testing */
+.map-container.force-display {
+    display: block !important;
+}
+
+/* Map header with title and close button */
+.map-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #f0f2f5;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.map-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    color: #666;
+}
+
+.close-button:hover {
+    color: #333;
+}
+
+/* The actual map element */
+.clinic-map {
+    height: 300px;
+    width: 100%;
+    background-color: #f0f0f0;
+}
+
+/* Loading state for map */
+.map-loading, .map-placeholder {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    background-color: #f8f9fa;
+}
+
+/* Error state for map */
+.map-error {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #d32f2f;
+    font-size: 14px;
+    text-align: center;
+    background-color: #fef5f5;
+}
+
+.map-error i {
+    font-size: 32px;
+    margin-bottom: 12px;
+    color: #d32f2f;
+}
+
+/* Clinic listing in chat */
+.clinic-listing {
+    margin: 12px 0;
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    border-left: 3px solid #86a487;
+}
+
+.clinic-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.clinic-address {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.clinic-distance {
+    font-size: 13px;
+    color: #777;
+}
+
+/* Info Window styling overrides */
+/* Since Google Maps info windows are in iframes */
+.gm-style .gm-style-iw-c {
+    padding: 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15) !important;
+}
+
+.gm-style .gm-style-iw-d {
+    overflow: hidden !important;
+    padding: 0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .clinic-map {
+        height: 250px;
+    }
+    
+    .map-loading, .map-placeholder, .map-error {
+        height: 250px;
+    }
+}
+
+/* No results state */
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9fafb;
+}
+
+.no-results-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: #6b7280;
+}
+
+.no-results-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 8px;
+}
+
+.no-results-message {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  max-width: 300px;
+}
+
+.no-results-link {
+  display: inline-flex;
+  align-items: center;
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.no-results-link:hover {
+  text-decoration: underline;
+}
+
+/* Clinic List Styling */
+.clinic-list-container {
+  padding: 16px;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.clinic-list-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.clinic-list {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.clinic-item {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.clinic-services {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 8px 0;
+}
+
+.clinic-directions {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.clinic-directions i {
+  margin-left: 4px;
+  font-size: 11px;
+}
+
+.clinic-directions:hover {
+  text-decoration: underline;
+} 

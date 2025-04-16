@@ -1,0 +1,238 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Add Font Awesome for map icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="/static/css/style.css?v=1.0.2">
+
+<div class="app-container">
+  <!-- Mobile menu toggle -->
+  <button id="menuToggle" class="menu-toggle" aria-label="Toggle chat history">
+    ☰
+  </button>
+  
+  <!-- Quick Exit button moved to top right corner with direct red styling and ESC tooltip -->
+  <button id="quickExit" class="quick-exit-btn" style="position: fixed; top: 1rem; right: 1rem; z-index: 1000; background-color: #D32F2F; color: white !important; border: none; font-weight: 500; border-radius: 6px; padding: 8px 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);" title="Press ESC key to quickly exit">Quick Exit</button>
+  
+  <!-- Sidebar for chat history -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <!-- Simple direct implementation of new chat button with inline script -->
+      <button id="newChatButton" class="new-chat-button" style="background-color: #86a487; color: black; font-weight: bold; padding: 10px; border-radius: 6px; border: none; cursor: pointer; width: 90%; margin: 10px auto; display: block;">
+        <span>+ New Chat</span>
+      </button>
+      
+      <!-- Show Tutorial button moved from header to sidebar -->
+      <button id="showTutorialButton" style="background-color: #6c757d; color: black; font-weight: bold; padding: 8px; border-radius: 6px; border: none; cursor: pointer; width: 90%; margin: 10px auto; display: block;" onclick="if(window.resetTutorial) { window.resetTutorial(); }">
+        <span>Show Tutorial</span>
+      </button>
+    </div>
+    <div class="chat-history" id="chatHistoryContainer">
+      <!-- Chat history items will be added dynamically by JavaScript -->
+    </div>
+  </aside>
+  
+  <!-- Main chat area -->
+  <main class="main-content">
+    <div class="chat-container">
+      <!-- Header -->
+      <header class="chat-header">
+        <div class="header-content">
+          <h1 class="header-title">Abby</h1>
+          <p class="header-description">This chatbot provides general information about reproductive and mental health but is not a substitute for professional medical advice. Always consult with a qualified healthcare provider for personal medical decisions.</p>
+        </div>
+        <div class="header-buttons">
+          <!-- Quick Exit button removed from here -->
+        </div>
+      </header>
+      
+      <!-- Chat messages area -->
+      <div id="chatMessages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+      
+      <!-- Embedded map container -->
+      <div id="map-wrapper" class="map-wrapper" style="display: none;">
+        <div id="clinic-map" class="clinic-map"></div>
+      </div>
+      
+      <!-- Input area -->
+      <form id="chatForm" class="chat-form" role="form">
+        <label for="userInput" class="visually-hidden">Type your message</label>
+        <textarea id="userInput" placeholder="Ask a question..." rows="1" aria-multiline="true"></textarea>
+        <div class="action-buttons">
+          <button id="sendButton" type="submit" disabled aria-label="Send message">
+            <i class="fas fa-arrow-up" aria-hidden="true"></i>
+          </button>
+        </div>
+      </form>
+      
+      <!-- Test Controls - Removed -->
+    </div>
+  </main>
+</div>
+
+<style>
+.map-wrapper {
+    margin: 10px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 300px;
+    width: 100%;
+    display: none;
+}
+
+.clinic-map {
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.bot-message .map-wrapper {
+    margin-top: 10px;
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<!-- Initialize Google Maps API key first -->
+<script>
+window.GOOGLE_MAPS_API_KEY = "{{ google_maps_api_key }}";
+console.log("Google Maps API key initialized:", window.GOOGLE_MAPS_API_KEY ? "YES (length: " + window.GOOGLE_MAPS_API_KEY.length + ")" : "NO");
+
+// Global variables
+var map = null;
+var markers = [];
+var placesService = null;
+var mapInitialized = false;
+
+// Initialize Google Maps
+function initGoogleMaps() {
+    console.log("Google Maps API loading callback executed");
+    window.mapApiLoaded = true;
+    mapInitialized = true;
+    
+    // Log detailed information about what's available
+    const mapsStatus = {
+        maps: !!window.google?.maps,
+        places: !!window.google?.maps?.places,
+        geometry: !!window.google?.maps?.geometry,
+        placesService: !!window.google?.maps?.places?.PlacesService,
+        geocoder: !!window.google?.maps?.Geocoder,
+        key_in_script: !!document.querySelector('script[src*="maps.googleapis.com"]')?.src?.includes('key=')
+    };
+    
+    console.log("Google Maps objects available:", mapsStatus);
+    
+    // Check if all required components are available
+    if (!mapsStatus.maps || !mapsStatus.places || !mapsStatus.geometry) {
+        console.error("Google Maps is missing required components:", mapsStatus);
+        return;
+    }
+    
+    // Create a global function to test map functionality
+    window.testGoogleMaps = function() {
+        try {
+            console.log("Testing Google Maps functionality");
+            const testMapDiv = document.createElement('div');
+            testMapDiv.style.width = '1px';
+            testMapDiv.style.height = '1px';
+            testMapDiv.style.position = 'absolute';
+            testMapDiv.style.left = '-1000px';
+            document.body.appendChild(testMapDiv);
+            
+            const testMap = new google.maps.Map(testMapDiv, {
+                center: { lat: 37.7749, lng: -122.4194 },
+                zoom: 12
+            });
+            
+            const testService = new google.maps.places.PlacesService(testMap);
+            
+            console.log("Map test successful:", !!testMap, !!testService);
+            document.body.removeChild(testMapDiv);
+            return true;
+        } catch (error) {
+            console.error("Map test failed:", error);
+            return false;
+        }
+    };
+    
+    // Run test immediately
+    window.mapTestResult = window.testGoogleMaps();
+    console.log("Map test result:", window.mapTestResult);
+    
+    // Trigger a custom event to notify that maps is ready
+    document.dispatchEvent(new Event('google-maps-initialized'));
+    
+    // Initialize map if necessary but DO NOT SHOW IT
+    const mapWrapper = document.getElementById('map-wrapper');
+    const mapElement = document.getElementById('clinic-map');
+    
+    // IMPORTANT: Make sure map remains hidden after initialization
+    if (mapWrapper) {
+        mapWrapper.style.display = 'none';
+        mapWrapper.setAttribute('aria-hidden', 'true');
+        console.log("Keeping map wrapper hidden after initialization");
+    }
+
+    // Initialize Places service
+    if (mapElement && window.google.maps.places) {
+        try {
+            map = new google.maps.Map(mapElement, {
+                center: { lat: 37.7749, lng: -122.4194 }, // Default to San Francisco
+                zoom: 12,
+                mapTypeControl: false,
+                streetViewControl: false
+            });
+            placesService = new google.maps.places.PlacesService(map);
+            console.log("Places service initialized successfully");
+        } catch (error) {
+            console.error("Error initializing places service:", error);
+        }
+    }
+}
+
+// Handle Google Maps API loading error
+window.gm_authFailure = function() {
+    console.error("Google Maps API authentication failed - invalid API key");
+    alert("Google Maps API key error. Maps functionality will not be available.");
+    const mapElement = document.getElementById('clinic-map');
+    if (mapElement) {
+        mapElement.innerHTML = `
+            <div style="padding: 20px; text-align: center;">
+                <p>Google Maps API key error. Please try again later or contact support.</p>
+            </div>
+        `;
+    }
+};
+</script>
+
+<!-- Load Google Maps API with Places library - using async and callback -->
+<script>
+// Function to load Google Maps API dynamically
+function loadGoogleMapsAPI() {
+    console.log("Attempting to load Google Maps API");
+    if (!window.GOOGLE_MAPS_API_KEY) {
+        console.error("No Google Maps API key available");
+        return;
+    }
+    
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${window.GOOGLE_MAPS_API_KEY}&libraries=places,geometry&callback=initGoogleMaps`;
+    script.async = true;
+    script.defer = true;
+    script.onerror = function() {
+        console.error("Failed to load Google Maps API script");
+    };
+    document.head.appendChild(script);
+    console.log("Google Maps API script added to head");
+}
+
+// Call the function after a short delay to ensure the API key is set
+setTimeout(loadGoogleMapsAPI, 500);
+</script>
+
+<!-- Load application scripts after Google Maps API key is initialized -->
+<script src="/static/js/tutorial.js"></script>
+<script src="/static/js/maps.js"></script>
+<script src="/static/js/chat.js"></script>
+<script src="/static/js/quick-exit.js"></script>
+{% endblock %}

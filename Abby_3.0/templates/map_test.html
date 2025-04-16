@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c4c8c;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-panel {
+            margin-bottom: 20px;
+        }
+        #test-map {
+            height: 400px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        #test-status {
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+        }
+        #test-status.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        #test-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        #test-log {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .button {
+            background-color: #2c4c8c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #3a5fa9;
+        }
+        .api-key-section {
+            margin: 20px 0;
+        }
+        #api-key-input {
+            padding: 8px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Google Maps API Test</h1>
+        
+        <div class="api-key-section">
+            <p>Enter your Google Maps API key:</p>
+            <input type="text" id="api-key-input" placeholder="Enter your Google Maps API key">
+            <button class="button" onclick="setApiKey()">Set API Key</button>
+        </div>
+        
+        <div class="test-panel">
+            <button class="button" onclick="runGoogleMapsTest()">Run Test</button>
+            <p>This will test if the Google Maps API is properly loaded and working with your API key.</p>
+        </div>
+        
+        <div id="test-status">Ready to test...</div>
+        
+        <div id="test-map"></div>
+        
+        <h2>Test Log</h2>
+        <div id="test-log"></div>
+    </div>
+    
+    <script>
+        // Store API key globally
+        window.googleMapsApiKey = '';
+        
+        // Function to set the API key from the input
+        function setApiKey() {
+            const apiKeyInput = document.getElementById('api-key-input');
+            if (apiKeyInput && apiKeyInput.value) {
+                window.googleMapsApiKey = apiKeyInput.value;
+                document.getElementById('test-status').innerHTML = `API Key set: ${apiKeyInput.value.substring(0, 5)}...`;
+                document.getElementById('test-status').className = '';
+            } else {
+                alert('Please enter a valid API key');
+            }
+        }
+        
+        // Check for API key in URL parameters
+        function getApiKeyFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const apiKey = urlParams.get('key');
+            if (apiKey) {
+                window.googleMapsApiKey = apiKey;
+                document.getElementById('api-key-input').value = apiKey;
+                document.getElementById('test-status').innerHTML = `API Key set from URL: ${apiKey.substring(0, 5)}...`;
+            }
+        }
+        
+        // Initialize the page
+        window.onload = function() {
+            getApiKeyFromUrl();
+        };
+    </script>
+    
+    <script src="/static/js/test-maps.js"></script>
+</body>
+</html> 
