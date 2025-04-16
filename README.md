@@ -18,10 +18,8 @@ A specialized chatbot designed to provide accurate and supportive information ab
 ├── models/             # ML model implementations
 ├── nltk_data/         # NLTK data files (managed separately)
 ├── scripts/           # Utility scripts
-├── serialized_models/ # Pre-trained models (managed separately)
 ├── static/           # Static web assets
 ├── templates/        # HTML templates
-├── tests/           # Test suite
 └── utils/           # Utility functions
 ```
 
