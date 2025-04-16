@@ -14,12 +14,12 @@ A specialized chatbot designed to provide accurate and supportive information ab
 │   ├── cloudformation/  # AWS CloudFormation templates
 │   ├── docs/           # Deployment documentation
 │   ├── scripts/        # Deployment scripts
-│   └── terraform/      # Terraform configuration
 ├── models/             # ML model implementations
 ├── nltk_data/         # NLTK data files (managed separately)
 ├── scripts/           # Utility scripts
 ├── static/           # Static web assets
 ├── templates/        # HTML templates
+├── terraform/        # Terraform configuration
 └── utils/           # Utility functions
 ```
 
