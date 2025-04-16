@@ -35,7 +35,7 @@ A specialized chatbot designed to provide accurate and supportive information ab
 1. Clone the repository:
    ```bash
    git clone https://github.com/sahanasankar13/Abby_Chatbot.git
-   cd Abby_Chatbot
+   cd Abby-Capstone-Submission-Spring-2025/Abby_3.0/
    ```
 
 2. Create and activate a virtual environment:
