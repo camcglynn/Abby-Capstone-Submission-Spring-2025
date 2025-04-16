@@ -1,0 +1,93 @@
+{
+  "Texas": {
+    "abortion": {
+      "summary": "Texas currently prohibits abortion at all stages of pregnancy with limited exceptions. A near-total abortion ban went into effect on August 25, 2022.",
+      "restrictions": [
+        "Abortion is prohibited except in medical emergencies to save the life of the pregnant person or prevent 'substantial impairment of major bodily function'",
+        "There are no exceptions for rape or incest",
+        "Providing abortion services is classified as a felony"
+      ],
+      "exceptions": [
+        "Medical emergency to save the life of the pregnant person",
+        "Prevention of substantial impairment of major bodily function"
+      ]
+    },
+    "contraception": {
+      "summary": "Contraception remains legal and available in Texas. Most forms of birth control including pills, condoms, IUDs, and emergency contraception can be accessed through healthcare providers, clinics, and pharmacies."
+    },
+    "resources": [
+      {
+        "name": "Planned Parenthood",
+        "contact": "1-800-230-PLAN"
+      },
+      {
+        "name": "National Abortion Federation Hotline",
+        "contact": "1-800-772-9100"
+      },
+      {
+        "name": "Texas Equal Access Fund",
+        "contact": "1-888-893-6585"
+      }
+    ],
+    "last_updated": "2023-04-01"
+  },
+  "California": {
+    "abortion": {
+      "summary": "California protects the right to abortion. State law allows abortion until viability (around 24-26 weeks), and after viability when necessary to protect the life or health of the pregnant person.",
+      "restrictions": [
+        "Abortion is restricted after fetal viability unless necessary to protect the life or health of the pregnant person"
+      ],
+      "exceptions": [
+        "Protection of life or health of the pregnant person"
+      ]
+    },
+    "contraception": {
+      "summary": "Contraception is widely available in California. State law requires health insurance plans to cover all FDA-approved contraceptive methods without cost-sharing."
+    },
+    "resources": [
+      {
+        "name": "ACCESS Reproductive Justice",
+        "contact": "1-800-376-4636"
+      },
+      {
+        "name": "Planned Parenthood",
+        "contact": "1-800-230-PLAN"
+      },
+      {
+        "name": "California Department of Public Health",
+        "contact": "https://www.cdph.ca.gov"
+      }
+    ],
+    "last_updated": "2023-03-15"
+  },
+  "New York": {
+    "abortion": {
+      "summary": "New York protects the right to abortion. The Reproductive Health Act (2019) codified Roe v. Wade protections into state law, allowing abortion up to 24 weeks and beyond that when necessary to protect the patient's life or health or if the fetus is not viable.",
+      "restrictions": [
+        "Abortion is restricted after 24 weeks unless necessary to protect the life or health of the pregnant person or if the fetus is not viable"
+      ],
+      "exceptions": [
+        "Protection of life or health of the pregnant person",
+        "Fetal non-viability"
+      ]
+    },
+    "contraception": {
+      "summary": "New York requires insurance plans to cover all FDA-approved contraceptive methods. Emergency contraception is available without a prescription at pharmacies."
+    },
+    "resources": [
+      {
+        "name": "New York Abortion Access Fund",
+        "contact": "https://www.nyaaf.org"
+      },
+      {
+        "name": "Planned Parenthood",
+        "contact": "1-800-230-PLAN"
+      },
+      {
+        "name": "New York State Department of Health",
+        "contact": "https://www.health.ny.gov"
+      }
+    ],
+    "last_updated": "2023-02-10"
+  }
+}
