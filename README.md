@@ -60,7 +60,7 @@ A specialized chatbot designed to provide accurate and supportive information ab
    python app.py
    ```
 
-The application will be available at http://localhost:5006
+The application will be available at http://localhost:#### (your local server #; ex: 8000)
 
 ## Testing
 
@@ -69,31 +69,11 @@ Run the test suite:
 python -m pytest tests/
 ```
 
-## Deployment
-
-### AWS Deployment
-
-1. Configure AWS credentials:
-   ```bash
-   aws configure
-   ```
-
-2. Deploy using CloudFormation:
-   ```bash
-   cd deployment/cloudformation
-   aws cloudformation create-stack --stack-name abby-chatbot --template-body file://abby-chatbot-stack.yml --capabilities CAPABILITY_NAMED_IAM
-   ```
-
-For detailed deployment instructions, see [deployment/docs/deploy_aws_github_pipeline.md](deployment/docs/deploy_aws_github_pipeline.md)
-
 ## Data and Model Management
 
 The following directories are managed separately and not included in version control:
 - `data/`: Contains training data and configuration files
-- `serialized_models/`: Contains pre-trained models
 - `nltk_data/`: Contains NLTK data files
-
-Contact the project maintainers for access to these resources.
 
 ## Contributing
 
@@ -102,10 +82,6 @@ Contact the project maintainers for access to these resources.
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
-
-## License
-
-This project is proprietary and confidential. All rights reserved.
 
 ## Contact
 
